@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maxine Sun, PhD, MPH — Genomic Epidemiology | Cardio-Oncology</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --surface: #f7f8fc;
+      --surface-2: #f2f4fb;
+      --ink: #111111;
+      --muted: #4a4f52;
+      --rule: #dde2f0;
+      --accent: #273c75;
+      --accent-strong: #1e2f5c;
+      --accent-soft: #e7ecfb;
+      --shadow: 0 12px 30px rgba(39, 60, 117, 0.08);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--rule);
+      padding: 0 2.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav-brand {
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      margin-left: auto;
+      margin-right: 1rem;
+    }
+    nav ul a {
+      font-size: 0.95rem;
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      position: relative;
+    }
+    nav ul a::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: -8px;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s ease;
+    }
+    nav ul a:hover::after { transform: scaleX(1); }
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.22rem;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .lang-btn {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font: inherit;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 0.42rem 0.72rem;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    .lang-btn.active {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 6vw 72px;
+      background:
+        radial-gradient(circle at top right, rgba(39, 60, 117, 0.08), transparent 32%),
+        linear-gradient(180deg, #ffffff 0%, #fbfefe 100%);
+    }
+    .hero-text { max-width: 980px; width: 100%; }
+    .hero-kicker {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      font-weight: 700;
+    }
+    .hero-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 44px; height: 2px;
+      background: var(--accent);
+    }
+    .hero-intro {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-avatar {
+      width: 170px;
+      height: 170px;
+      border-radius: 24px;
+      object-fit: cover;
+      object-position: center 28%;
+      border: 1px solid var(--rule);
+      box-shadow: var(--shadow);
+      background: #edf4f4;
+      flex-shrink: 0;
+    }
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      line-height: 0.96;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 0.5rem;
+    }
+    h1 em { font-style: normal; }
+    .hero-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+    }
+    .hero-desc {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 2.6rem;
+    }
+    .hero-desc strong { color: var(--ink); }
+    .hero-actions {
+      display: flex;
+      align-items: stretch;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .hero-cta {
+      display: inline-block;
+      padding: .9rem 1.35rem;
+      border: 1px solid var(--accent);
+      color: #fff;
+      background: var(--accent);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      border-radius: 12px;
+      box-shadow: 0 10px 22px rgba(39, 60, 117, 0.16);
+    }
+    .hero-stats { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stat-card {
+      min-width: 190px;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 16px;
+      padding: 1rem 1.1rem;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 8px 20px rgba(17,17,17,0.04);
+    }
+    .hero-stat-num {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: .35rem;
+    }
+    .hero-stat-label { font-size: 0.82rem; color: var(--muted); line-height: 1.35; }
+
+    section {
+      padding: 6rem 6vw;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+    section.visible { opacity: 1; transform: none; }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid var(--rule);
+      padding-bottom: 1rem;
+    }
+    .section-num {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    h2 {
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    #about { background: var(--bg); }
+    .about-body { max-width: 900px; }
+    .about-body p { margin-bottom: 1.2rem; color: var(--muted); }
+
+    #research { background: var(--surface-2); }
+    .research-areas {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+    .area-card {
+      border: 1px solid var(--rule);
+      padding: 1.6rem;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(17,17,17,0.04);
+    }
+    .area-icon { font-size: 1.55rem; margin-bottom: 0.9rem; }
+    .area-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: .55rem;
+      letter-spacing: -0.02em;
+    }
+    .area-card p { font-size: 0.95rem; color: var(--muted); }
+    .pubs-heading {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      font-weight: 700;
+    }
+    .pub-list { list-style: none; }
+    .pub-item {
+      padding: 1.35rem 0;
+      border-bottom: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 68px 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    .pub-year {
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 700;
+      padding-top: .2rem;
+    }
+    .pub-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .35rem;
+      letter-spacing: -0.02em;
+    }
+    .pub-journal { font-size: 0.9rem; color: var(--muted); }
+    .pub-tags { margin-top: .65rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.76rem;
+      padding: .3rem .65rem;
+      border: 1px solid rgba(39, 60, 117, 0.18);
+      color: var(--accent-strong);
+      background: var(--accent-soft);
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    #interests { background: var(--bg); }
+    .interests-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 1.5rem;
+    }
+    .interest-block {
+      display: flex;
+      gap: 1rem;
+      align-items: start;
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 18px;
+      padding: 1.35rem;
+    }
+    .interest-icon {
+      font-size: 1.25rem;
+      width: 2.25rem;
+      height: 2.25rem;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      border-radius: 12px;
+      flex-shrink: 0;
+    }
+    .interest-block h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: .35rem;
+      letter-spacing: -0.02em;
+    }
+    .interest-block p { font-size: 0.94rem; color: var(--muted); }
+
+    #contact { background: #fff; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 420px) 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .contact-intro {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 460px;
+    }
+    .contact-intro p { margin-bottom: 1rem; }
+    .contact-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .85rem;
+      margin-top: 1.2rem;
+    }
+    .contact-links li a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.98rem;
+      padding: .95rem 1rem;
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      background: #fff;
+    }
+    .link-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      min-width: 78px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .contact-map {
+      background: #fff;
+      border: 1px solid var(--rule);
+      border-radius: 22px;
+      padding: 0.75rem;
+      box-shadow: var(--shadow);
+      max-width: 760px;
+      justify-self: start;
+    }
+    .contact-map svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+    }
+
+    footer {
+      background: #f8fbfb;
+      color: var(--muted);
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    @media (max-width: 900px) {
+      nav { padding: 0 1.2rem; height: 68px; gap: 0.75rem; }
+      nav ul { display: none; }
+      header { min-height: auto; padding-top: 100px; }
+      .hero-intro { align-items: flex-start; }
+      .hero-avatar { width: 126px; height: 126px; border-radius: 20px; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .hero-stats { width: 100%; }
+      .hero-stat-card { min-width: 0; flex: 1 1 220px; }
+      .research-areas, .interests-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="#home" class="nav-brand">Maxine Sun, PhD, MPH</a>
+    <ul>
+      <li><a href="#about" data-en="About" data-fr="À propos">About</a></li>
+      <li><a href="#research" data-en="Research" data-fr="Recherche">Research</a></li>
+      <li><a href="#interests" data-en="Interests" data-fr="Intérêts">Interests</a></li>
+      <li><a href="#contact" data-en="Contact" data-fr="Contact">Contact</a></li>
+    </ul>
+    <div class="lang-switch" aria-label="Language switcher">
+      <button class="lang-btn active" type="button" data-lang="en">EN</button>
+      <button class="lang-btn" type="button" data-lang="fr">FR</button>
+    </div>
+  </nav>
+
+  <header id="home">
+    <div class="hero-text">
+      <div class="hero-kicker" data-en="Genomic Epidemiology · Cardio-Oncology" data-fr="Épidémiologie génomique · Cardio-oncologie">Genomic Epidemiology · Cardio-Oncology</div>
+      <div class="hero-intro">
+        <img class="hero-avatar" src="data:image/jpeg;base64,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" alt="Portrait of Maxine Sun" />
+        <div>
+          <h1><em>Maxine</em><br>Sun</h1>
+          <p class="hero-title" data-en="PhD, MPH · Assistant Professor · Montreal Heart Institute &amp; Université de Montréal" data-fr="PhD, MPH · Professeure adjointe · Institut de cardiologie de Montréal &amp; Université de Montréal">PhD, MPH · Assistant Professor · Montreal Heart Institute &amp; Université de Montréal</p>
+        </div>
+      </div>
+      <p class="hero-desc" data-en="Investigating the <strong>shared genomic and inflammatory pathways</strong> linking cardiovascular disease and cancer progression, with the goal of improving <strong>cancer survivorship</strong>, prevention, and earlier intervention." data-fr="Étudier les <strong>mécanismes génomiques et inflammatoires partagés</strong> reliant les maladies cardiovasculaires et la progression du cancer, afin d’améliorer la <strong>survie après un cancer</strong>, la prévention et les interventions précoces.">Investigating the <strong>shared genomic and inflammatory pathways</strong> linking cardiovascular disease and cancer progression, with the goal of improving <strong>cancer survivorship</strong>, prevention, and earlier intervention.</p>
+      <div class="hero-actions">
+        <a href="#research" class="hero-cta" data-en="View Research" data-fr="Voir la recherche">View Research</a>
+        <div class="hero-stats">
+          <a class="hero-stat-card" href="https://www.ncbi.nlm.nih.gov/myncbi/maxine.sun.1/bibliography/public/" target="_blank">
+            <div class="hero-stat-num">403</div>
+            <div class="hero-stat-label" data-en="Peer-reviewed publications" data-fr="Publications évaluées par les pairs">Peer-reviewed publications</div>
+          </a>
+          <a class="hero-stat-card" href="https://scholar.google.com/citations?user=B-v3OxoAAAAJ&hl=en" target="_blank">
+            <div class="hero-stat-num">94</div>
+            <div class="hero-stat-label" data-en="H-index (Google Scholar)" data-fr="Indice h (Google Scholar)">H-index (Google Scholar)</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 data-en="About" data-fr="À propos">About</h2>
+    </div>
+    <div class="about-body">
+      <p data-en="I am an Assistant Professor at the Montreal Heart Institute, affiliated with the Université de Montréal. My research program applies molecular and genetic epidemiology to understand the shared inflammatory and biological mechanisms that drive both cancer progression and cardiovascular disease." data-fr="Je suis professeure adjointe à l’Institut de cardiologie de Montréal, affiliée à l’Université de Montréal. Mon programme de recherche utilise des approches d’épidémiologie moléculaire et génétique pour comprendre les mécanismes inflammatoires et biologiques partagés qui sous-tendent à la fois la progression du cancer et les maladies cardiovasculaires.">I am an Assistant Professor at the Montreal Heart Institute, affiliated with the Université de Montréal. My research program applies molecular and genetic epidemiology to understand the shared inflammatory and biological mechanisms that drive both cancer progression and cardiovascular disease.</p>
+      <p data-en="By defining these common pathways, I seek to improve cancer survivorship and identify opportunities for earlier intervention in cancer development. Ultimately, this work aims to uncover therapeutic targets and prevention strategies that can reduce the burden of both cancer and cardiovascular disease." data-fr="En définissant ces voies communes, je cherche à améliorer la survie après un cancer et à identifier des occasions d’intervention plus précoce dans le développement du cancer. À terme, ces travaux visent à mettre en évidence des cibles thérapeutiques et des stratégies de prévention pouvant réduire le fardeau du cancer et des maladies cardiovasculaires.">By defining these common pathways, I seek to improve cancer survivorship and identify opportunities for earlier intervention in cancer development. Ultimately, this work aims to uncover therapeutic targets and prevention strategies that can reduce the burden of both cancer and cardiovascular disease.</p>
+      <p data-en="I obtained a MPH at the Université de Montréal studying the genetic variants associated with incident cancer in patients with coronary artery disease using statins. Later on, I earned my PhD at the Montreal Heart Institute/Université de Montréal under the supervision of Dr. Marie-Pierre Dubé and Dr. Jean-Claude Tardif, where my research focused on the shared etiologies of cancer and cardiovascular disease, particularly clonal hematopoiesis. Specifically, I leveraged large population-based cohorts integrating genomic data with clinical cancer registries to study the molecular determinants of cancer outcomes and cardiovascular risk." data-fr="J’ai obtenu une maîtrise en santé publique à l’Université de Montréal en étudiant les variants génétiques associés à l’incidence du cancer chez des patients atteints de maladie coronarienne traités par statines. J’ai ensuite obtenu mon doctorat à l’Institut de cardiologie de Montréal/Université de Montréal sous la direction de Dre Marie-Pierre Dubé et du Dr Jean-Claude Tardif, où mes travaux portaient sur les étiologies communes du cancer et des maladies cardiovasculaires, en particulier l’hématopoïèse clonale. Plus précisément, j’ai exploité de grandes cohortes populationnelles intégrant des données génomiques et des registres cliniques en oncologie afin d’étudier les déterminants moléculaires des issues liées au cancer et du risque cardiovasculaire.">I obtained a MPH at the Université de Montréal studying the genetic variants associated with incident cancer in patients with coronary artery disease using statins. Later on, I earned my PhD at the Montreal Heart Institute/Université de Montréal under the supervision of Dr. Marie-Pierre Dubé and Dr. Jean-Claude Tardif, where my research focused on the shared etiologies of cancer and cardiovascular disease, particularly clonal hematopoiesis. Specifically, I leveraged large population-based cohorts integrating genomic data with clinical cancer registries to study the molecular determinants of cancer outcomes and cardiovascular risk.</p>
+      <p data-en="I subsequently completed postdoctoral training at the Lank Center for Genitourinary Oncology at Dana-Farber Cancer Institute/Harvard Medical School under the mentorship of Dr. Toni Choueiri. During this time, I studied the shared germline genetic architecture of kidney cancer and clonal hematopoiesis through a Department of Defense–funded research program." data-fr="J’ai ensuite complété une formation postdoctorale au Lank Center for Genitourinary Oncology du Dana-Farber Cancer Institute/Harvard Medical School sous la supervision du Dr Toni Choueiri. Durant cette période, j’ai étudié l’architecture génétique germinale partagée entre le cancer du rein et l’hématopoïèse clonale dans le cadre d’un programme de recherche financé par le Department of Defense.">I subsequently completed postdoctoral training at the Lank Center for Genitourinary Oncology at Dana-Farber Cancer Institute/Harvard Medical School under the mentorship of Dr. Toni Choueiri. During this time, I studied the shared germline genetic architecture of kidney cancer and clonal hematopoiesis through a Department of Defense–funded research program.</p>
+      <p data-en="My overarching objective is to translate genomic insights into clinically meaningful tools that can inform screening, risk stratification, and preventive cardiology strategies for the growing population of cancer survivors." data-fr="Mon objectif global est de traduire les connaissances génomiques en outils cliniquement utiles pouvant orienter le dépistage, la stratification du risque et les stratégies de cardiologie préventive pour la population croissante de survivants du cancer.">My overarching objective is to translate genomic insights into clinically meaningful tools that can inform screening, risk stratification, and preventive cardiology strategies for the growing population of cancer survivors.</p>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 data-en="Research &amp; Publications" data-fr="Recherche et publications">Research &amp; Publications</h2>
+    </div>
+    <div class="research-areas">
+      <div class="area-card">
+        <div class="area-icon">🧬</div>
+        <h3 data-en="Clonal Hematopoiesis" data-fr="Hématopoïèse clonale">Clonal Hematopoiesis</h3>
+        <p data-en="Investigating CHIP and mosaic chromosomal alterations as shared risk factors linking cardiovascular disease and cancer, particularly in oncology populations and cancer survivors." data-fr="Étude du CHIP et des altérations chromosomiques mosaïques comme facteurs de risque communs reliant les maladies cardiovasculaires et le cancer, en particulier chez les populations en oncologie et les survivants du cancer.">Investigating CHIP and mosaic chromosomal alterations as shared risk factors linking cardiovascular disease and cancer, particularly in oncology populations and cancer survivors.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-icon">🔥</div>
+        <h3 data-en="Inflammation &amp; Carcinogenesis" data-fr="Inflammation et carcinogenèse">Inflammation &amp; Carcinogenesis</h3>
+        <p data-en="Exploring how inflammatory pathways — including C-reactive protein and cytokine signalling — contribute to both cardiovascular disease and cancer progression at the molecular level." data-fr="Explorer comment les voies inflammatoires — y compris la protéine C-réactive et la signalisation des cytokines — contribuent à la fois aux maladies cardiovasculaires et à la progression du cancer au niveau moléculaire.">Exploring how inflammatory pathways — including C-reactive protein and cytokine signalling — contribute to both cardiovascular disease and cancer progression at the molecular level.</p>
+      </div>
+      <div class="area-card">
+        <div class="area-icon">📊</div>
+        <h3 data-en="Population Genomics" data-fr="Génomique des populations">Population Genomics</h3>
+        <p data-en="Leveraging the UK Biobank, Canadian biobanks, and clinical cancer registries to characterize long-term cardiovascular outcomes in cancer survivors at population scale." data-fr="Exploiter la UK Biobank, des biobanques canadiennes et des registres cliniques en oncologie pour caractériser, à l’échelle populationnelle, les issues cardiovasculaires à long terme chez les survivants du cancer.">Leveraging the UK Biobank, Canadian biobanks, and clinical cancer registries to characterize long-term cardiovascular outcomes in cancer survivors at population scale.</p>
+      </div>
+    </div>
+    <p class="pubs-heading" data-en="Selected Publications" data-fr="Publications sélectionnées">Selected Publications</p>
+    <ul class="pub-list">
+      <li class="pub-item">
+        <span class="pub-year">2023</span>
+        <div>
+          <div class="pub-title">Somatic Mosaic Chromosomal Alterations and Death of Cardiovascular Disease Causes among Cancer Survivors</div>
+          <div class="pub-journal">Cancer Epidemiology, Biomarkers &amp; Prevention · 32(6):776–783 · PMID: 36976640</div>
+          <div class="pub-tags"><span class="tag">Clonal Hematopoiesis</span><span class="tag">UK Biobank</span><span class="tag">Cancer Survivors</span></div>
+        </div>
+      </li>
+      <li class="pub-item">
+        <span class="pub-year">2022</span>
+        <div>
+          <div class="pub-title">Low-dose colchicine and high-sensitivity C-reactive protein after myocardial infarction: A combined analysis using individual patient data from the COLCOT and LoDoCo-MI studies</div>
+          <div class="pub-journal">International Journal of Cardiology · 363:20–22 · PMID: 35716932</div>
+          <div class="pub-tags"><span class="tag">Inflammation</span><span class="tag">Colchicine</span><span class="tag">Myocardial Infarction</span></div>
+        </div>
+      </li>
+      <li class="pub-item">
+        <span class="pub-year">2021</span>
+        <div>
+          <div class="pub-title">Genetic meta-analysis of cancer diagnosis following statin use identifies new associations and implicates human leukocyte antigen (HLA) in women</div>
+          <div class="pub-journal">The Pharmacogenomics Journal · 21(4):446–457 · PMID: 33649522</div>
+          <div class="pub-tags"><span class="tag">Pharmacogenomics</span><span class="tag">Statins</span><span class="tag">Cancer Risk</span></div>
+        </div>
+      </li>
+      <li class="pub-item">
+        <span class="pub-year">2020</span>
+        <div>
+          <div class="pub-title">High-sensitivity C-reactive protein is associated with clonal hematopoiesis of indeterminate potential</div>
+          <div class="pub-journal">Blood Advances · 4(11):2430–2438 · PMID: 32492156</div>
+          <div class="pub-tags"><span class="tag">CHIP</span><span class="tag">Inflammation</span><span class="tag">hs-CRP</span></div>
+        </div>
+      </li>
+    </ul>
+    <p style="text-align:center; color:var(--muted); font-size:.95rem; margin-top:1.5rem;">
+      <span data-en="Full publication list on" data-fr="Liste complète des publications sur">Full publication list on</span>
+      <a href="https://scholar.google.com/citations?user=B-v3OxoAAAAJ&hl=en" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:600;">Google Scholar</a>
+      &amp;
+      <a href="https://www.ncbi.nlm.nih.gov/myncbi/maxine.sun.1/bibliography/public/" target="_blank" style="color:var(--accent); text-decoration:none; font-weight:600;">PubMed</a>
+    </p>
+  </section>
+
+  <section id="interests">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 data-en="Interests" data-fr="Intérêts">Interests</h2>
+    </div>
+    <div class="interests-grid">
+      <div class="interest-block"><div class="interest-icon">🧬</div><div><h3 data-en="Shared Disease Pathways" data-fr="Voies communes entre les maladies">Shared Disease Pathways</h3><p data-en="Understanding how chronic inflammation serves as a common mechanistic thread between cardiovascular disease and cancer — and how intervening on these shared pathways may benefit both conditions simultaneously." data-fr="Comprendre comment l’inflammation chronique agit comme mécanisme commun entre les maladies cardiovasculaires et le cancer — et comment agir sur ces voies partagées pourrait bénéficier aux deux conditions simultanément.">Understanding how chronic inflammation serves as a common mechanistic thread between cardiovascular disease and cancer — and how intervening on these shared pathways may benefit both conditions simultaneously.</p></div></div>
+      <div class="interest-block"><div class="interest-icon">🔬</div><div><h3 data-en="Cancer Survivorship &amp; Cardioprotection" data-fr="Survie après cancer et cardioprotection">Cancer Survivorship &amp; Cardioprotection</h3><p data-en="Translating population-level genomic discoveries into clinical risk stratification tools and preventive interventions that improve long-term cardiovascular health in cancer survivors." data-fr="Traduire les découvertes génomiques à l’échelle populationnelle en outils cliniques de stratification du risque et en interventions préventives qui améliorent la santé cardiovasculaire à long terme chez les survivants du cancer.">Translating population-level genomic discoveries into clinical risk stratification tools and preventive interventions that improve long-term cardiovascular health in cancer survivors.</p></div></div>
+      <div class="interest-block"><div class="interest-icon">💻</div><div><h3 data-en="Computational Biology" data-fr="Biologie computationnelle">Computational Biology</h3><p data-en="Developing and applying computational methods to integrate genomic, molecular, and clinical data in order to better understand shared mechanisms across cancer and cardiovascular disease." data-fr="Développer et appliquer des méthodes computationnelles pour intégrer des données génomiques, moléculaires et cliniques afin de mieux comprendre les mécanismes partagés entre le cancer et les maladies cardiovasculaires.">Developing and applying computational methods to integrate genomic, molecular, and clinical data in order to better understand shared mechanisms across cancer and cardiovascular disease.</p></div></div>
+      <div class="interest-block"><div class="interest-icon">🧠</div><div><h3 data-en="AI-based Pathology" data-fr="Pathologie basée sur l’IA">AI-based Pathology</h3><p data-en="Exploring artificial intelligence approaches in pathology to characterize the tumor microenvironment, refine phenotyping, and generate clinically relevant biomarkers from tissue-based data." data-fr="Explorer des approches d’intelligence artificielle en pathologie afin de caractériser le microenvironnement tumoral, d’affiner le phénotypage et de générer des biomarqueurs cliniquement pertinents à partir de données tissulaires.">Exploring artificial intelligence approaches in pathology to characterize the tumor microenvironment, refine phenotyping, and generate clinically relevant biomarkers from tissue-based data.</p></div></div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 data-en="Contact" data-fr="Contact">Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="contact-intro">
+          <p data-en="We are actively recruiting graduate students and postdocs interested in the genomics of cardiovascular risk in oncology populations. In addition, I welcome enquiries from prospective collaborators, and clinicians." data-fr="Nous recrutons activement des étudiants aux cycles supérieurs et des stagiaires postdoctoraux intéressés par la génomique du risque cardiovasculaire dans les populations en oncologie. J’accueille également les demandes de collaboration de chercheurs et de cliniciens.">We are actively recruiting graduate students and postdocs interested in the genomics of cardiovascular risk in oncology populations. In addition, I welcome enquiries from prospective collaborators, and clinicians.</p>
+          <p data-en="The lab is located in the Montreal Heart Institute at 5000 Bélanger St." data-fr="Le laboratoire est situé à l’Institut de cardiologie de Montréal, au 5000, rue Bélanger.">The lab is located in the Montreal Heart Institute at 5000 Bélanger St.</p>
+        </div>
+        <ul class="contact-links">
+          <li><a href="mailto:maxine.sun@icm-mhi.org"><span class="link-label" data-en="Email" data-fr="Courriel">Email</span>maxine.sun@icm-mhi.org</a></li>
+          <li><a href="https://x.com/maxinesun" target="_blank"><span class="link-label">X</span>@maxinesun</a></li>
+          <li><a href="https://scholar.google.com/citations?user=B-v3OxoAAAAJ&hl=en" target="_blank"><span class="link-label">Scholar</span>Google Scholar</a></li>
+          <li><a href="https://www.ncbi.nlm.nih.gov/myncbi/maxine.sun.1/bibliography/public/" target="_blank"><span class="link-label">PubMed</span><span data-en="Publication list" data-fr="Liste des publications">Publication list</span></a></li>
+        </ul>
+      </div>
+      <div class="contact-map">
+        <svg viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Map showing the Montreal Heart Institute location circled in red">
+          <rect width="1200" height="600" fill="#f4f4f6"/>
+          <g fill="#e7e7ea">
+            <rect x="0" y="320" width="260" height="210"/>
+            <rect x="860" y="40" width="300" height="180"/>
+            <rect x="905" y="310" width="250" height="170"/>
+            <rect x="250" y="155" width="120" height="220"/>
+            <rect x="470" y="315" width="130" height="90"/>
+          </g>
+          <g stroke="#b7bcc8" stroke-width="16" fill="none" stroke-linecap="round">
+            <path d="M0 294 L1200 294"/>
+            <path d="M820 0 L980 600"/>
+            <path d="M352 0 L560 600"/>
+            <path d="M1010 0 L1200 600"/>
+          </g>
+          <g stroke="#c6cad4" stroke-width="6" fill="none" opacity="0.95">
+            <path d="M0 120 L1200 120"/>
+            <path d="M0 200 L1200 200"/>
+            <path d="M0 390 L1200 390"/>
+            <path d="M0 475 L1200 475"/>
+            <path d="M110 0 L110 600"/>
+            <path d="M205 0 L205 600"/>
+            <path d="M470 0 L470 600"/>
+            <path d="M575 0 L575 600"/>
+            <path d="M690 0 L690 600"/>
+          </g>
+          <g fill="#8e97aa" font-family="Inter, sans-serif" font-size="20" font-weight="600">
+            <text x="740" y="125">NOUVEAU-ROSEMONT</text>
+            <text x="1015" y="505">CITÉ-JARDIN</text>
+            <text x="95" y="300">Île de Montréal</text>
+          </g>
+          <g fill="#9da3b1" font-family="Inter, sans-serif" font-size="16">
+            <text x="540" y="290">EPIC Center of the</text>
+            <text x="525" y="313">Montreal Heart Institute</text>
+            <text x="860" y="170">Pavillon Rosemont - Hôpital</text>
+            <text x="890" y="193">Maisonneuve...</text>
+            <text x="655" y="72">Hôpital Santa Cabrini</text>
+          </g>
+          <g>
+            <ellipse cx="590" cy="305" rx="120" ry="72" fill="none" stroke="#d12229" stroke-width="6"/>
+            <path d="M676 274c0-24 19-43 43-43s43 19 43 43c0 35-43 80-43 80s-43-45-43-80z" fill="#d12229"/>
+            <circle cx="719" cy="274" r="15" fill="#fff"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p data-en="© 2026 Maxine Sun, PhD, MPH · Assistant Professor, Montreal Heart Institute &amp; Université de Montréal" data-fr="© 2026 Maxine Sun, PhD, MPH · Professeure adjointe, Institut de cardiologie de Montréal &amp; Université de Montréal">© 2026 Maxine Sun, PhD, MPH · Assistant Professor, Montreal Heart Institute &amp; Université de Montréal</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('section').forEach((section) => observer.observe(section));
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-en][data-fr]').forEach((el) => {
+        el.innerHTML = el.getAttribute(lang === 'fr' ? 'data-fr' : 'data-en');
+      });
+      document.querySelectorAll('.lang-btn').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+    }
+    document.querySelectorAll('.lang-btn').forEach((btn) => {
+      btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+    });
+    setLanguage('en');
+  </script>
+</body>
+</html>
